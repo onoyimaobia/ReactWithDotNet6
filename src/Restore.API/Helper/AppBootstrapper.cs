@@ -12,8 +12,21 @@ namespace Restore.API.Helper
 {
     public static class AppBootsrapper
     {
+        public static readonly string  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public static void InitServices(WebApplicationBuilder builder)
         {
+            
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                                    builder =>
+                                    {
+                                        builder.AllowAnyOrigin()
+                                                            .AllowAnyHeader()
+                                                            .AllowAnyMethod();
+                                    });
+            });
+
             builder.Services.AddControllers();
 
             // Add services to the container.

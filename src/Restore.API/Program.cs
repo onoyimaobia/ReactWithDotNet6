@@ -23,7 +23,9 @@ try
     }
 
     app.UseHttpsRedirection();
+    app.UseRouting();
 
+    app.UseCors(AppBootsrapper.MyAllowSpecificOrigins);
     app.UseAuthorization();
 
     app.MapControllers();

@@ -10,7 +10,7 @@ using Restore.Core.Models;
 namespace Restore.API.Controllers
 {
     [ApiController]
-    [Route(" api/[controller]")]
+    [Route("api/[controller]")]
     public class ProductsController: ControllerBase
     {
         private readonly IProductRepository _pRepo;
