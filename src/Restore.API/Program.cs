@@ -1,4 +1,5 @@
 ﻿using Restore.API.Helper;
+using Restore.API.Middleware;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
@@ -15,6 +16,7 @@ try
 
     var app = builder.Build();
 
+    app.UseMiddleware<ExceptionMiddleware>();
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
     {

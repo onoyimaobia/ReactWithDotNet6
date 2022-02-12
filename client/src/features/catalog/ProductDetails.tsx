@@ -2,6 +2,7 @@ import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, T
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import agent from "../../app/api/agent";
 import { Product } from "../../app/models/Product";
 
 export default function ProductDetails(){
@@ -10,8 +11,10 @@ export default function ProductDetails(){
     const [product, setProduct] = useState<Product | null>(null); 
     const [loading, setLoading] = useState(true);
     useEffect(() =>{
-        axios.get(`https://localhost:7209/api/Products/${id}`)
-        .then(response => setProduct(response.data))
+        agent.Catalog.details(parseInt(id!))
+        // axios.get(`https://localhost:7209/api/Products/${id}`)
+        //.then(response => setProduct(response.data))
+        .then(response => setProduct(response))
         .catch(error => console.log(error))
         .finally(() => setLoading(false));
     }, [id])
